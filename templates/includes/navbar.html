@@ -1,0 +1,35 @@
+{% block script %}
+    <script>
+        const logout = async () => {
+            const resp = await fetch('/logout', {
+                method: "POST"
+                //headers: {"Content-Type": "application/json"}
+            }) 
+            .then(res => {
+                console.log(res.json())
+                
+                window.location.replace('/')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+    </script>
+{% endblock %}
+<header>
+    <nav class=" navbar-manual navbar navbar-expand-lg navbar-light ">
+       
+        <div class="container">
+             <a href="/index" class="navbar-brand">Brand</a>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="/index" class="nav-link">Home</a></li>
+                    <!-- <li class="nav-item"><a href="/restaurant" class="nav-link">Restaurant</a></li> -->
+                   <li class="nav-item navbar-right"><a href="/register" class="nav-link">Sign Up</a></li>
+                    <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+                    <li class="nav-item"><button class="nav-link d-none" id="logout" onclick="logout()"> Logout </button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

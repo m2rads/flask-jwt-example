@@ -1,0 +1,27 @@
+
+{% extends "layout.html" %}
+{% block content %}
+    <h1> Hello {{ resp }}</h1>
+    <div class="container-wrap">
+        <h1>Here we keep track of your favourite Restaurants</h1>
+        <!-- for forms make sure that the name and id attributes have the same value -->
+        <form class="rest-form" action="/createRestaurant" method="POST">
+            <div>
+                <label for="rest">What is the name of your favourite resturant?</label>
+                <input type="text" id="rest" name="rest" class="form-control" />
+            </div>
+            <div>
+                <label for="loc">Location?</label>
+                <input type="text" id="loc" name="loc" class="form-control" />
+            </div>
+            <div>
+                <label for="food">Please Enter Your Favorite Food</label>
+                <input type="text" name="food" id="food" class="form-control"/>
+            </div>
+            <input type="submit" id="submit-file" class="btn btn-primary " value="Submit" />
+        </form>
+    </div>
+    
+
+
+{% endblock %}

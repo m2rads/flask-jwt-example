@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block script %}
+    <script>
+        const signup = async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value
+            const username = document.getElementById("username").value
+            
+            const response = await fetch ('/register', {
+                method: "post",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({email: email, username: username, password: document.getElementById("password").value})
+            })
+            .then (res=> {
+                console.log(res.json())
+                makeRequestJWT()
+            })
+            .catch(err => console.log(err))
+        }
+        
+        function getCookie(name) {
+          const value = `; ${document.cookie}`;
+          const parts = value.split(`; ${name}=`);
+          if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+        
+        const makeRequestJWT = async () => {
+            const response = await fetch('/restaurant', {
+                method: 'GET',
+                credentials: 'same-origin',
+                headers: {"X_CSRF_TOKEN": getCookie('csrf_access_token') }
+            })
+            const result = await response.json()
+            console.log(result)
+            return result
+        }
+    </script>
+{% endblock %}
+{% block content %}
+	
+    <div class="container-wrap">
+        <form class="rest-form login-form" onsubmit="signup(event)">
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control">
+            </div>
+            <div>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-control"/>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control"/>
+            </div>
+            <input type="submit" class="btn btn-primary w-100" value="Sign Up" />
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+/* Global */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Navigation Bar */
+
+nav a {
+    color: #E5D1B8 !important;
+}
+
+.navbar-manual {
+    background-color: #708A81 !important;
+   
+}
+
+/* Resturant */
+.container-wrap {
+    display: grid;
+    margin: auto;
+    width: 60%;
+    padding-top: 40px;
+    justify-content: stretch;
+    justify-items: center;
+}
+
+.container-wrap .rest-form {
+    padding-top: 20px;
+}
+
+.container-wrap .rest-form > div {
+    display: grid;
+    padding-bottom: 10px;
+}
+
+
+/* Login Form */
+.login-form {
+    width: 30% !important;
+    padding: 5px 5px;
+}
+
